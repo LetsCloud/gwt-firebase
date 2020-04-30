@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.github.letscloud</groupId>
+		<artifactId>gwt-jswrapper-parent</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+
+	<artifactId>gwt-firebase</artifactId>
+	<packaging>gwt-lib</packaging>
+
+	<name>gwt-firebase</name>
+	<description>GWT wrapper for Firebase client</description>
+	<url>https://letscloud.github.io/</url>
+
+	<licenses>
+		<license>
+			<name>The Apache License, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+		</license>
+	</licenses>
+
+	<developers>
+		<developer>
+			<name>Csernik Róbert</name>
+			<email>csernikr@gmail.com</email>
+			<organization>LetsCloud</organization>
+			<organizationUrl>https://letscloud.github.io/</organizationUrl>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git@github.com:LetsCloud/gwt-firebase.git</connection>
+		<developerConnection>scm:git:git@github.com:LetsCloud/gwt-firebase.git</developerConnection>
+		<url>http://github.com/LetsCloud/gwt-firebase</url>
+		<tag>v1.0.0</tag>
+	</scm>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>sonatype-nexus-staging</id>
+			<name>Sonatype Nexus release repository</name>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<guava.version>20.0</guava.version>
+	</properties>
+
+	<dependencies>
+		<!-- *** -->
+		<!-- GWT -->
+		<!-- *** -->
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-user</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.gwt</groupId>
+			<artifactId>gwt-dev</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- ********* -->
+		<!-- JsWrapper -->
+		<!-- ********* -->
+		<dependency>
+			<groupId>com.github.letscloud</groupId>
+			<artifactId>gwt-jswrapper</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<!-- ***** -->
+		<!-- Guava -->
+		<!-- ***** -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava-gwt</artifactId>
+			<version>${guava.version}</version>
+		</dependency>
+
+		<!-- ******* -->
+		<!-- Testing -->
+		<!-- ******* -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<name>Central Repository</name>
+			<url>https://repo.maven.apache.org/maven2</url>
+		</repository>
+		<repository>
+			<id>sonatype-nexus-snapshot</id>
+			<name>Sonatype Nexus snapshot repository</name>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</repository>
+	</repositories>
+
+	<build>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${surefire.version}</version>
+				<configuration>
+					<additionalClasspathElements>
+						<additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
+						<additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
+					</additionalClasspathElements>
+					<useManifestOnlyJar>false</useManifestOnlyJar>
+					<forkMode>always</forkMode>
+					<argLine>-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.NoOpLog</argLine>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>test</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>net.ltgt.gwt.maven</groupId>
+				<artifactId>gwt-maven-plugin</artifactId>
+				<version>${tbroyer.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<moduleName>gwt.firebase.GwtFirebase</moduleName>
+					<style>OBFUSCATED</style>
+					<logLevel>INFO</logLevel>
+					<sourceLevel>1.8</sourceLevel>
+					<jvmArgs>
+						<jvmArg>-Xmx1g</jvmArg>
+						<jvmArg>-Xms1g</jvmArg>
+						<jvmArg>-XX:CompileThreshold=7000</jvmArg>
+					</jvmArgs>
+					<optimize>9</optimize>
+					<compilerArgs>
+						<compilerArg>-compileReport</compilerArg>
+						<compilerArg>-XcompilerMetrics</compilerArg>
+					</compilerArgs>
+					<skipModule>true</skipModule>
+					<classpathScope>compile+runtime</classpathScope>
+					<failOnError>true</failOnError>
+					<skipModule>true</skipModule>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
