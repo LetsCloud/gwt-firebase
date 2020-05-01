@@ -44,13 +44,16 @@ public class MessagingManager implements HasMessagingFeatures {
 	}
 */
 	private Firebase firebase;
-	private Boolean registered;
+
+	public enum FirebaseState {
+		UNREGISTRED, PENDING, REGISTERED
+	}
+	private FirebaseState firebaseState = FirebaseState.UNREGISTRED;
 
 	Fn.NoArg unsubscribe;
 
 	public MessagingManager() {
 		logger.info("MessagingManager()");
-		registered = false;
 	}
 
 	public Firebase getFirebase() {
@@ -61,16 +64,16 @@ public class MessagingManager implements HasMessagingFeatures {
 	public void setFirebase(Firebase firebase) {
 		logger.info("MessagingManager.setFirebase()");
 		this.firebase = firebase;
-		registered = true;
+		firebaseState = FirebaseState.REGISTERED;
 	}
 
-	public Boolean isRegistered() {
-		logger.info("MessagingManager.isRegistered()=" + registered);
-		return registered;
+	public FirebaseState getFirebaseState() {
+		logger.info("MessagingManager.getFirebaseState()=" + firebaseState);
+		return firebaseState;
 	}
 
-	public void setRegistered(Boolean registered) {
-		this.registered = registered;
+	public void setFirebaseState(FirebaseState state) {
+		this.firebaseState = state;
 	}
 
 	@Override
