@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.github.letscloud</groupId>
 		<artifactId>gwt-jswrapper-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>0.0.2-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>gwt-firebase</artifactId>
@@ -53,7 +53,7 @@
 	</distributionManagement>
 
 	<properties>
-		<guava.version>20.0</guava.version>
+		<guava.version>29.0-jre</guava.version>
 	</properties>
 
 	<dependencies>
@@ -93,15 +93,6 @@
 			<artifactId>guava-gwt</artifactId>
 			<version>${guava.version}</version>
 		</dependency>
-
-		<!-- ******* -->
-		<!-- Testing -->
-		<!-- ******* -->
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<repositories>
@@ -118,27 +109,11 @@
 	</repositories>
 
 	<build>
-
 		<plugins>
+
 			<plugin>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>${surefire.version}</version>
-				<configuration>
-					<additionalClasspathElements>
-						<additionalClasspathElement>${project.build.sourceDirectory}</additionalClasspathElement>
-						<additionalClasspathElement>${project.build.testSourceDirectory}</additionalClasspathElement>
-					</additionalClasspathElements>
-					<useManifestOnlyJar>false</useManifestOnlyJar>
-					<forkMode>always</forkMode>
-					<argLine>-Dorg.apache.commons.logging.Log=org.apache.commons.logging.impl.NoOpLog</argLine>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>test</goal>
-						</goals>
-					</execution>
-				</executions>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
 			</plugin>
 
 			<plugin>
@@ -175,14 +150,12 @@
 				</executions>
 			</plugin>
 
+			<!-- ********************* -->
+			<!-- versions-maven-plugin -->
+			<!-- ********************* -->
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
