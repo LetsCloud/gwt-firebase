@@ -53,7 +53,7 @@
 	</distributionManagement>
 
 	<properties>
-		<guava.version>29.0-jre</guava.version>
+		<guava.version>30.0-jre</guava.version>
 	</properties>
 
 	<dependencies>
@@ -77,7 +77,7 @@
 		<dependency>
 			<groupId>com.github.letscloud</groupId>
 			<artifactId>gwt-jswrapper</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
 
 		<!-- ***** -->
