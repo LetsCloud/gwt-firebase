@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.github.letscloud</groupId>
 		<artifactId>gwt-jswrapper-parent</artifactId>
-		<version>0.0.2-SNAPSHOT</version>
+		<version>0.0.3-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>gwt-firebase</artifactId>
