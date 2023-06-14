@@ -53,7 +53,7 @@
 	</distributionManagement>
 
 	<properties>
-		<guava.version>30.0-jre</guava.version>
+		<guava.version>32.0.0-jre</guava.version>
 	</properties>
 
 	<dependencies>
